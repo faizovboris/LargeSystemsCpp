@@ -74,8 +74,14 @@ public:
         Swap(other);
     }
 
-    void Release() {
-        Reset(nullptr);
+    T* Release() {
+        // Поведение примерно как у unique_ptr
+        T* ans = this->ptr;
+        if (ans) {
+            ans->Dec();
+        }
+        this->ptr = nullptr;
+        return ans;
     }
 
     void Swap(TIntrusivePtr<T>& other) {
