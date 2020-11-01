@@ -28,5 +28,4 @@ int main() {
            (ptr.Get() == ptr3.Get()) && (ptr2.Get() == nullptr));
 
     static_assert(sizeof(TDoc*) == sizeof(ptr));
-    std::cerr << "ni\n";
 }

@@ -53,7 +53,7 @@ public:
         if (this->ptr) {
             this->ptr->Dec();
             if (this->ptr->RefCount() == 0) {
-                delete(this->ptr);
+                delete this->ptr;
             }
         }
     }
