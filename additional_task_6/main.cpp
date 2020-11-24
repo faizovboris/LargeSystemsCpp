@@ -76,11 +76,15 @@ int main() {
     Any c;
     c = b;
     c.get<int>() = 7;
-    std::cerr << a.get<int>() << " " << b.get<int>() << " " << c.get<int>() << "\n"; // 5 6 7
+    std::cout << a.get<int>() << " " << b.get<int>() << " " << c.get<int>() << "\n"; // 5 6 7
     c = Any("Hello");
-    std::cerr << a.get<int>() << " " << b.get<int>() << " " << c.get<const char *>() << "\n"; // 5 6 Hello
+    std::cout << a.get<int>() << " " << b.get<int>() << " " << c.get<const char *>() << "\n"; // 5 6 Hello
     c.emplace(std::string(c.get<const char *>()));
-    std::cerr << a.get<int>() << " " << b.get<int>() << " " << c.get<std::string>() << "\n"; // 5 6 Hello
+    std::cout << a.get<int>() << " " << b.get<int>() << " " << c.get<std::string>() << "\n"; // 5 6 Hello
+    b = std::string("Hi");
+    std::cout << a.get<int>() << " " << b.get<std::string>() << " " << c.get<std::string>() << "\n"; // 5 6 Hello
+    a = double(11.5);
+    std::cout << a.get<double>() << " " << b.get<std::string>() << " " << c.get<std::string>() << "\n"; // 5 6 Hello
     try {
         a.get<std::string>();
         std::cout << "FAILED - no exception\n";
