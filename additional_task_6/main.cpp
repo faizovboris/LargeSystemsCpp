@@ -54,7 +54,7 @@ private:
     template <typename T>
     class Holder : public BaseHolderInterface {
     public:
-        T value;
+        std::decay_t<T> value;
 
         template <typename U>
         Holder(U&& val): value(std::forward<U>(val)) {}
