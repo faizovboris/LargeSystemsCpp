@@ -82,13 +82,21 @@ int main() {
     c.emplace(std::string(c.get<const char *>()));
     std::cout << a.get<int>() << " " << b.get<int>() << " " << c.get<std::string>() << "\n"; // 5 6 Hello
     b = std::string("Hi");
-    std::cout << a.get<int>() << " " << b.get<std::string>() << " " << c.get<std::string>() << "\n"; // 5 6 Hello
+    std::cout << a.get<int>() << " " << b.get<std::string>() << " " << c.get<std::string>() << "\n"; // 5 Hi Hello
     a = double(11.5);
-    std::cout << a.get<double>() << " " << b.get<std::string>() << " " << c.get<std::string>() << "\n"; // 5 6 Hello
+    std::cout << a.get<double>() << " " << b.get<std::string>() << " " << c.get<std::string>() << "\n"; // 11.5 Hi Hello
     try {
         a.get<std::string>();
         std::cout << "FAILED - no exception\n";
     } catch(...) {
         std::cout << "OK - has exception\n";
     }
+    c = std::move(a);
+    try {
+        a.get<double>();
+        std::cout << "FAILED - no exception\n";
+    } catch(...) {
+        std::cout << "OK - has exception\n";
+    }
+    std::cout << b.get<std::string>() << " " << c.get<double>() << "\n"; // Hi 11.5
 }

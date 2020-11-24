@@ -18,4 +18,6 @@ g++ -Wall -std=gnu++14 main.cpp -o main
 5 Hi Hello
 11.5 Hi Hello
 OK - has exception
+OK - has exception
+Hi 11.5
 ```
